@@ -5,12 +5,12 @@
   import SideBar from "../components/SideBar.svelte";
   import ContentPanel from "../components/ContentPanel.svelte";
   import {onMount} from 'svelte'
-  import {load} from './services'
+  import {request} from './services'
 
   import './index.css'
   let compactMode = true
   let mobileMode = false
-  let data: String
+  let data: string
   
   onMount(()=>{
         let mql = window.matchMedia('(max-width: 480px)')
@@ -24,9 +24,15 @@
     console.log('handled compact mode', compactMode)
   }
 
-  const handleLoad =  (e:any)=>{
+  const handleLoad = async (e:any)=>{
     console.log('load: =>', e.detail)
-    data = load(e.detail)
+
+    //e.detail is the relative path
+    const response = await request.get(e.detail)
+    console.log('load response: => ',response.data)
+    data = response.data
+
+    
   }
 
 </script>
@@ -35,8 +41,8 @@
   <SideBar on:load ={handleLoad}  {compactMode} {mobileMode}  on:toggleSidebar={sidebarToggleHandler}></SideBar>
   <El class='header-content-wrapper'>
     <Header {compactMode} {mobileMode} on:toggleSidebar={sidebarToggleHandler}></Header>
-    <ContentPanel >
-      {data}
+    <ContentPanel  content = {data}>
+      
     </ContentPanel>
   </El>
 </El>

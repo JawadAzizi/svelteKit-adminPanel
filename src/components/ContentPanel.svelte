@@ -1,13 +1,18 @@
-<script>
+<script lang="ts">
+    import { onMount } from 'svelte';
     import {El} from 'yesvelte'
-    export const content = undefined
+    export let content:any = undefined
+
+   
+
+
 
 </script>
 
-<El class='content-panel'>
-    <h2>content of the admin</h2>
+<div class='content-panel' id = 'content-panel'>
+    
     {#if content}
-        {content}
+    {@html content}
     {/if}
     <slot></slot>
-</El>
+</div>
