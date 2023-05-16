@@ -1,0 +1,41 @@
+.admin-panel{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+    
+}
+.header-content-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.content-panel{
+    width: 100%;
+    
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+.side-bar{
+    position: relative;
+}
+.side-bar-wrapper{
+    height: 100vh;
+    position: relative !important;
+
+}
+.side-bar-wrapper-compact-mode{
+    position: relative !important;
+    height: 100vh;
+    width: auto!important;
+}
+
+
+
+
+
