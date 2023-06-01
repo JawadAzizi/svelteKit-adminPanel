@@ -1,6 +1,6 @@
 <script lang="ts">
   import 'yesvelte/css/tabler.min.css'
-  import { El } from "yesvelte";
+  import { El ,Sidebar, SidebarItem} from "yesvelte";
   import Header from "../components/Header.svelte";
   import SideBar from "../components/SideBar.svelte";
   import ContentPanel from "../components/ContentPanel.svelte";
@@ -8,8 +8,8 @@
   import {request} from './services'
 
   import './index.css'
-  let compactMode = true
-  let mobileMode = false
+  let compactMode:boolean|undefined = true
+  let mobileMode:boolean|undefined = false
   let data: string
   
   onMount(()=>{
@@ -40,9 +40,11 @@
 <El  class='admin-panel'>
   <SideBar on:load ={handleLoad}  {compactMode} {mobileMode}  on:toggleSidebar={sidebarToggleHandler}></SideBar>
   <El class='header-content-wrapper'>
-    <Header {compactMode} {mobileMode} on:toggleSidebar={sidebarToggleHandler}></Header>
+    <Header  {mobileMode} on:toggleSidebar={sidebarToggleHandler}></Header>
     <ContentPanel  content = {data}>
-      
+        {#if false }
+            lsdk
+        {/if}
     </ContentPanel>
   </El>
 </El>

@@ -20,6 +20,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"yesvelte": "^0.0.2-next.138"
+		"yesvelte": "^0.0.2-next.146"
 	}
 }

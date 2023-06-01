@@ -1,5 +1,5 @@
  <script lang="ts">
-    import {  Modal, Dropdown ,DropdownItem, DropdownMenu, El, Icon, Sidebar } from 'yesvelte';
+    import {  Modal ,OffcanvasBody, Dropdown ,DropdownItem, DropdownMenu, El, Icon, Sidebar, Offcanvas, OffcanvasHeader } from 'yesvelte'
     import { createEventDispatcher, onMount } from "svelte";
     import SidebarItem from './SidebarItem.svelte'
     export let sideBarItems:any = []
@@ -11,50 +11,42 @@
     //mock data for test
     sideBarItems.push(
         {
-            icon:'home', title:' home', href: './',
-             children: [
-                {icon:'star', title: "pligins", href: './'},
-                {icon:'star', title: "pligins", href: './'},
-                {icon:'star', title: "pligins", href: './'},
-                {icon:'star', title: "pligins", href: './'},
+            icon:'home', title:' Dashboard', href: './',
+             
+        },
+        {
+            icon:"users", title: 'Users', href: './'
+        },
+        {
+            icon:"box", title:"Pages", href: './',
+            children: [
+                {icon:'star', title: "Page 1", href: './'},
+                {icon:'star', title: "Page 2", href: './'},
+                {icon:'star', title: "Page 3", href: './'},
+                {icon:'star', title: "Page 4", href: './'},
             ]
         },
         {
-            icon:"home", title: 'home', href: './'
+            icon:"star", title:"Products", href: './'
         },
         {
-            icon:"box", title:"Customize", href: './'
-        },
-        {
-            icon:"star", title:"Customize", href: './'
-        },
-        {
-            icon:'home', title:' home', href: './',
+            icon:'home', title:' Plugins', href: './',
              children: [
-                {icon:'star', title: "pligins", href: './'},
-                {icon:'star', title: "pligins", href: './'},
-                {icon:'star', title: "pligins", href: './'},
-                {icon:'star', title: "pligins", href: './'},
+                {icon:'star', title: "pligin 1", href: './'},
+                {icon:'star', title: "pligin 2", href: './'},
+                {icon:'star', title: "pligin 3", href: './'},
+                {icon:'star', title: "pligin 4", href: './'},
             ]
         },
         {
-            icon:'home', title:' home', href: './',
+            icon:'home', title:' Setting', href: './',
              children: [
-                {icon:'star', title: "pligins", href: './'},
-                {icon:'star', title: "pligins", href: './'},
-                {icon:'star', title: "pligins", href: './'},
-                {icon:'star', title: "pligins", href: './'},
+                {icon:'star', title: "setting 1", href: './'},
+                {icon:'star', title: "setting 2", href: './'},
+                {icon:'star', title: "setting 3", href: './'},
+                {icon:'star', title: "setting 4", href: './'},
             ]
-        },
-        {
-            icon:'home', title:' home', href: './',
-             children: [
-                {icon:'star', title: "pligins", href: './'},
-                {icon:'star', title: "pligins", href: './'},
-                {icon:'star', title: "pligins", href: './'},
-                {icon:'star', title: "pligins", href: './'},
-            ]
-        },
+        }
     )
 </script> 
 
@@ -76,7 +68,11 @@
         </Sidebar> 
     </El>
 {:else}
-    <Modal  on:close={()=>dispatch('toggleSidebar')} show={!compactMode} title='Admin Panel' scrollable dismissible >
+
+	
+    <Offcanvas on:close={()=>dispatch('toggleSidebar')} show={!compactMode} backdrop class='y-app-theme-dark' autoClose >
+        <OffcanvasHeader  title="Admin panel" p=0 m=0 />
+        <OffcanvasBody p=0 m=0>
             <Sidebar style='position: static; width: 100%; height: 100%' theme='dark'>
                 {#each sideBarItems as item}
                     {#if item.children }
@@ -90,6 +86,7 @@
                     {/if}
                 {/each}
             </Sidebar>
-    </Modal>
+        </OffcanvasBody>
+    </Offcanvas>
 
 {/if}

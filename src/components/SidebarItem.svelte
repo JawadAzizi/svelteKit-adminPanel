@@ -36,6 +36,7 @@
         //fetch data to app bar
         e.preventDefault()
         e.stopPropagation()
+        dispatch('toggleSidebar')
         dispatch('load', href)
 
     }

@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
     import {El, Offcanvas,OffcanvasBody,OffcanvasHeader,  Button, Icon} from 'yesvelte'
     import HeaderItem from './HeaderItem.svelte'
     import { createEventDispatcher } from 'svelte'
-    export const headerItems = []
-    export let compactMode=false
-    export let mobileMode= false
+    export let headerItems:any[] = []
+    // export let compactMode = false
+    export let mobileMode:boolean|undefined= false
     let showHeaderItems =false
     const dispatch= createEventDispatcher()
 
@@ -28,6 +28,7 @@
             <Offcanvas class='y-app-theme-dark' placement="end" autoClose backdrop  bind:show={showHeaderItems}>
                 <OffcanvasHeader  title='Header Items' p=0  m=0 ></OffcanvasHeader>
                 <OffcanvasBody >
+                    
                     
                 </OffcanvasBody>
             </Offcanvas>
